@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Newton-Rhapson method</title>
+    <style type="text/css">
+      #canvas {
+        border: 1px solid #000000;
+        position: absolute;
+        left: 1vw;
+        top: 1vw;
+      }
+      #form {
+        border: 1px solid #000000;
+        padding: 5px;
+        position: absolute;
+        right: 1vw;
+        top: 1vw;
+      }
+      #results {
+        border: 1px solid #000000;
+        padding: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas" width="500" height="500"></canvas>
+
+    <div id="form">
+      <form action="javascript:draw();">
+        Functie voorschrift:<br>
+        <input type="text" id="f" value="f(x)=0.05(x^2) +x -20">
+        <br>
+        <span id="problem"></span>
+        <br>
+        Beginwaarde:<br>
+        <input type="text" id="x0" value="2"><br>
+        Aantal oplossingen:<br>
+        <input type="text" id="maxr" value="5"><br>
+        Aantal cijfers om op af te ronden:<br>
+        <input type="text" id="round" value="5">
+        <br><br>
+        <input type="button" onclick="draw()" value="Teken">
+        <input type="button" onclick="algorithm()" value="Bereken">
+        <input type="Reset" onclick="cleardraw()"><br>
+      </form>
+
+      <div id="results">
+        <p>
+          <b>x1:</b>
+          0
+        </p>
+      </div>
+    </div>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mathquill/0.10.1/mathquill.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathquill/0.10.1/mathquill.min.js"></script>
+
+    <script>
+
+      setInterval(function () {
+        var MQ = MathQuill.getInterface(2);
+        var problemSpan = document.getElementById('problem');
+        problemSpan.innerHTML = document.getElementById("f").value;
+        MQ.StaticMath(problemSpan);
+
+      }, 1);
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/5.4.1/math.min.js"></script>
+    <script src="main.js" type="text/javascript"></script>
+
+  </body>
+</html>
