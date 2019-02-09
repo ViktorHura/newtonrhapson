@@ -109,57 +109,51 @@ function algorithm() {
 
   var results = []; //verzameling van alle uitkomsten
 
-
-
   var df = function(v) { //afgeleide functie
     return math.derivative(math.parse(fv), 'x').eval({
       x: v
     })
   }
 
-
-
   for (var i = 0; i < maxr; i++) {
-    var pointcouple = {
+    var couple = {
       xn: 0,
       xn1: 0
     }
 
     if (i == 0) {
-      pointcouple.xn = x0;
+      couple.xn = x0;
     } else {
-      pointcouple.xn = results[i - 1].xn1;
+      couple.xn = results[i - 1].xn1;
     }
 
-    if (df(pointcouple.xn) == 0) {
-      if (results[i - 1].xn > pointcouple.xn) {
-        pointcouple.xn -= Math.pow(0.1, round);
+    if (df(couple.xn) == 0) {
+      if (results[i - 1].xn > couple.xn) {
+        couple.xn -= Math.pow(0.1, round);
       } else {
-        pointcouple.xn += Math.pow(0.1, round);
+        couple.xn += Math.pow(0.1, round);
       }
     }
 
-    pointcouple.xn1 = pointcouple.xn - (f(pointcouple.xn) / df(pointcouple.xn));
-
-
+    couple.xn1 = couple.xn - (f(couple.xn) / df(couple.xn));
 
 
     //resultate op het scherm noteren en tekenen
-    results.push(pointcouple);
+    results.push(couple);
     document.getElementById("results").innerHTML = document.getElementById("results").innerHTML + "<p><b>x" + i + ":</b> " + (results[i].xn).toFixed(round) + " <b>y" + i + ":</b> " + (f(results[i].xn)).toFixed(round) + "</p>"
 
     ctx.beginPath();
     ctx.lineWidth = "0.5";
     ctx.strokeStyle = "blue";
-    ctx.moveTo(cx(pointcouple.xn), cy(f(pointcouple.xn)));
-    ctx.lineTo(cx(pointcouple.xn1), cy(0));
+    ctx.moveTo(cx(couple.xn), cy(f(couple.xn)));
+    ctx.lineTo(cx(couple.xn1), cy(0));
     ctx.stroke();
     ctx.beginPath();
     ctx.setLineDash([3, 3]);
-    ctx.moveTo(cx(pointcouple.xn), cy(f(pointcouple.xn)));
-    ctx.lineTo(cx(pointcouple.xn), cy(0));
+    ctx.moveTo(cx(couple.xn), cy(f(couple.xn)));
+    ctx.lineTo(cx(couple.xn), cy(0));
     ctx.stroke();
-    ctx.fillText("x" + i, cx(pointcouple.xn), cy(-2));
+    ctx.fillText("x" + i, cx(couple.xn), cy(-2));
     ctx.setLineDash([]);
 
   }
