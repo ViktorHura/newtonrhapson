@@ -54,9 +54,9 @@ function algorithm() {
         n++;
       }
       if (n>= maxr){
-        setFillStyle(ctx, 255, 255, 255, 1 );
+        setFillStyle(ctx, 255, 10, 10, 1 );
       }else{
-        setFillStyle(ctx, 0, 0, 0, 20 / n );
+        setFillStyle(ctx, 0, 0, 0, n / maxr );
       }
 
       ctx.fillRect(x - left, y - top, 1, 1);
