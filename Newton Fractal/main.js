@@ -56,7 +56,7 @@ function algorithm() {
       if (n>= maxr){
         setFillStyle(ctx, 255, 10, 10, 1 );
       }else{
-        setFillStyle(ctx, 0, 0, 0, n / maxr );
+        setFillStyle(ctx, 0, 0, 0, n / 30 );
       }
 
       ctx.fillRect(x - left, y - top, 1, 1);
